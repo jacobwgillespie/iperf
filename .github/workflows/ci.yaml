@@ -1,0 +1,20 @@
+name: CI
+on:
+  push: {}
+  pull_request: {}
+  workflow_dispatch: {}
+
+jobs:
+  oidc:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - run: sudo apt-get install -y iperf
+      - name: us-east-1
+        run: |
+          iperf -c 54.236.200.29
+      - name: eu-central-1
+        run: |
+          iperf -c 52.57.120.242
